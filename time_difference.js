@@ -1,22 +1,3 @@
-/* 
-Because calculating the relative difference between timestamps in my head is too hard.
-
-Usage:
-Copy paste into the javascript console and hit run. (Yeah I know. It's ugly.)
-
-Purpose:
-Calculate the difference between two timestamps and return the result in the following format: DD:HH:MM:SS
-Doesn't count miliseconds.
-Dates must be entered in the following format
-
-Mon DD YYYY HH:MM:SS GMT-OFF
-
-Mon is the three letter abbreviation of the month.
-OFF is the offset from GMT (e.g. -800 for PST).
-
-Originally created to calculate the difference in timestamps from when a payload for Log4Shell was sent, and when the pingback was received.
-*/
-
 // Some timestamps to test with.
 // Dec 26 2021 00:07:19 GMT-800
 // Dec 18 2021 12:05:17 GMT-800
@@ -143,7 +124,3 @@ function newDate(date_string){
 };
 
 alert("The time difference is displayed in the following format:\n\t\t\t\t   DD:HH:MM:SS\n\t\t\t\t   " + readTime(difftime));
-
-/*
-A bookmarklet for bookmarklet's sake.
-javascript:(function()%7Bvar%20getPingDate%20%3D%20prompt('%5Ct%5CtEnter%20the%20Ping%20Date%2C%20i.e.%20the%20Kibana%20timestamp.%5Cn%5Ct%5Ct%5Ct%5CtThe%20format%20should%20look%20like%20this%3A%5Cn%5Ct%5Ct%5Ct%20%20%20Month%20DDth%20YYYY%2C%20HH%3AMM%3ASS.mmm')%3Bvar%20getSendDate%20%3D%20prompt('%5Ct%5CtEnter%20the%20Send%20Date%2C%20i.e.%20the%20Splunk%20timestamp.%5Cn%5Ct%5Ct%5Ct%5CtThe%20format%20should%20look%20like%20this%3A%5Cn%5Ct%5Ct%5Ct%5Ct%5CtYYYY-MM-DD%20HH%3AMM%3ASS')%3Bvar%20month_map%20%3D%20%7B1%3A%22Jan%22%2C2%3A%22Feb%22%2C3%3A%22Mar%22%2C4%3A%22Apr%22%2C5%3A%22May%22%2C6%3A%22Jun%22%2C7%3A%22Jul%22%2C8%3A%22Aug%22%2C9%3A%22Sep%22%2C10%3A%22Oct%22%2C11%3A%22Nov%22%2C12%3A%22Dec%22%7D%3Bvar%20processedPingDate%20%3D%20processPingDate(getPingDate)%3Bvar%20processedSendDate%20%3D%20processSendDate(getSendDate)%3Bvar%20pingdate%20%3D%20newDate(processedPingDate)%3Bvar%20senddate%20%3D%20newDate(processedSendDate)%3Bvar%20difftime%20%3D%20diffTime(pingdate%2C%20senddate)%3Bfunction%20readTime%20(seconds)%20%7Bif%20(seconds%20%3D%3D%3D%200)%7Breturn%20%2200%3A00%3A00%3A00%22%3B%7Delse%20if%20(seconds%20%3D%3D%3D%20'')%7Breturn%20%22undefined%22%3B%7Delse%7Bvar%20isNeg%20%3D%20nullif%20(seconds%20%3C%200)%7BisNeg%20%3D%20true%3Bseconds%20%3D%20seconds%20*%20-1%3B%7Delse%7BisNeg%20%3D%20false%3B%7D%3Bvar%20sec_num%20%3D%20parseInt(seconds%2C10)%20%2F%201000%3Bvar%20DD%20%3D%20Math.floor(sec_num%20%2F%2086400)%3Bvar%20HH%20%3D%20Math.floor((sec_num%20-%20(DD%20*%2086400))%20%2F%203600)%3Bvar%20MM%20%3D%20Math.floor((sec_num%20-%20((DD%20*%2086400)%20%2B%20(HH%20*%203600)))%20%2F%2060)var%20SS%20%3D%20sec_num%20-%20((DD%20*%2086400)%20%2B%20(HH%20*%203600)%20%2B%20(MM%20*%2060))%3Bif%20(DD%20%3C%2010)%20%7BDD%20%3D%20%220%22%2BDD%3B%7Dif%20(HH%20%3C%2010)%20%7BHH%20%3D%20%220%22%2BHH%3B%7Dif%20(MM%20%3C%2010)%20%7BMM%20%3D%20%220%22%2BMM%3B%7Dif%20(SS%20%3C%2010)%20%7BSS%20%3D%20%220%22%2BSS%3B%7Dif%20(isNeg)%7Breturn%20%22-%22%2BDD%2B%22%3A%22%2BHH%2B%22%3A%22%2BMM%2B%22%3A%22%2BSS%3B%7Delse%7Breturn%20DD%2B%22%3A%22%2BHH%2B%22%3A%22%2BMM%2B%22%3A%22%2BSS%3B%7D%3B%7D%3B%7D%3Bfunction%20processPingDate(date_string)%20%7Bif%20(date_string%20%3D%3D%3D%20'')%7Breturn%20''%3B%7D%3Bvar%20findDate%3D%2F%5E%5Cs*(Jan%7CFeb%7CMar%7CApr%7CMay%7CJun%7CJul%7CAug%7CSep%7COct%7CNov%7CDec)(%3F%3Auary%7Cruary%7Cch%7Cil%7Ce%7Cy%7Cust%7Ctember%7Cober%7Cember)%5Cs(%5Cd%2B)%5Ba-z%5D%7B2%7D%5Cs(%5Cd%7B4%7D)%2C%5Cs(%5Cd%7B2%7D)%3A(%5Cd%7B2%7D)%3A(%5Cd%7B2%7D)%5C.%5Cd%2B%2Fg%3Bvar%20dateTime%20%3D%20findDate.exec(date_string)%3Bvar%20mon%3DdateTime%5B1%5D%3Bvar%20day%3DdateTime%5B2%5D%3Bvar%20year%3DdateTime%5B3%5D%3Bvar%20hour%3DdateTime%5B4%5D%3Bvar%20min%3DdateTime%5B5%5D%3Bvar%20sec%3DdateTime%5B6%5D%3Bvar%20offset%20%3D%20processOffset(new%20Date().getTimezoneOffset())%3Bvar%20processedDate%20%3D%20mon%20%2B%20%22%20%22%20%2B%20day%20%2B%20%22%20%22%20%2B%20year%20%2B%20%22%20%22%20%2B%20hour%20%2B%20%22%3A%22%20%2B%20min%20%2B%20%22%3A%22%20%2B%20sec%20%2B%20%22%20GMT-%22%20%2B%20offset%3Breturn%20processedDate%3B%7D%3Bfunction%20processOffset(offset)%7Bvar%20HH%20%3D%20Math.floor(offset%2F60)%3Bvar%20MM%20%3D%20Math.floor(offset%20-%20(HH*60))%3Bif%20(MM%20%3D%3D%200)%7BMM%20%3D%20%2200%22%3B%7D%3Bvar%20timezone%20%3D%20HH%20%2B%20MM%3Breturn%20timezone%7D%3Bfunction%20processSendDate(date_string)%20%7Bif%20(date_string%20%3D%3D%3D%20'')%7Breturn%20''%3B%7D%3Bvar%20findDate%3D%2F%5E%5Cs*(%5Cd%7B4%7D)%5C-(%5Cd%7B1%2C2%7D)%5C-(%5Cd%7B1%2C2%7D)%5Cs(%5Cd%2B)%3A(%5Cd%2B)%3A(%5Cd%2B)%2Fg%3Bvar%20dateTime%3DfindDate.exec(date_string)%3Bvar%20year%3DdateTime%5B1%5D%3Bvar%20mon%3Dmonth_map%5BdateTime%5B2%5D%5D%3Bvar%20day%3DdateTime%5B3%5D%3Bvar%20hour%3DdateTime%5B4%5D%3Bvar%20min%3DdateTime%5B5%5D%3Bvar%20sec%3DdateTime%5B6%5D%3Bvar%20offset%20%3D%20processOffset(new%20Date().getTimezoneOffset())%3Bvar%20processedDate%20%3D%20mon%20%2B%20%22%20%22%20%2B%20day%20%2B%20%22%20%22%20%2B%20year%20%2B%20%22%20%22%20%2B%20hour%20%2B%20%22%3A%22%20%2B%20min%20%2B%20%22%3A%22%20%2B%20sec%20%2B%20%22%20GMT-%22%20%2B%20offset%3Breturn%20processedDate%3B%7D%3Bfunction%20diffTime(ping%2C%20send)%7Bif%20(ping%20%3D%3D%3D%20''%20%7C%7C%20send%20%3D%3D%3D%20'')%7Breturn%20''%3B%7Delse%7Breturn%20ping.getTime()%20-%20send.getTime()%3B%7D%3B%7D%3Bfunction%20newDate(date_string)%7Bif%20(date_string%20%3D%3D%20'')%7Breturn%20''%3B%7Delse%7Breturn%20new%20Date(date_string)%3B%7D%3B%7D%3Balert(%22The%20time%20difference%20is%20displayed%20in%20the%20following%20format%3A%5Cn%5Ct%5Ct%5Ct%5Ct%20%20%20DD%3AHH%3AMM%3ASS%5Cn%5Ct%5Ct%5Ct%5Ct%20%20%20%22%20%2B%20readTime(difftime))%7D)()*/
