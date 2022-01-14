@@ -127,5 +127,5 @@ alert("The time difference is displayed in the following format:\n\t\t\t\t   DD:
 
 /*
 How to adjust the bookmarklet to source in code hosted remotely.
-javascript:(function(){var a = document.createElement("script");a.src = "https://pages.github.com/YOUR/USERSCRIPT.js";document.getElementsByTagName("head")[0].appendChild(a)})();
+javascript:(function(){var a = document.createElement("script");a.src = "https://source.trc.whs/jonathan.mueller/Time-Differ/raw/master/time_difference.js";document.getElementsByTagName("head")[0].appendChild(a)})();
 */
