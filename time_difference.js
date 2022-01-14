@@ -124,3 +124,8 @@ function newDate(date_string){
 };
 
 alert("The time difference is displayed in the following format:\n\t\t\t\t   DD:HH:MM:SS\n\t\t\t\t   " + readTime(difftime));
+
+/*
+How to adjust the bookmarklet to source in code hosted remotely.
+javascript:(function(){var a = document.createElement("script");a.src = "https://pages.github.com/YOUR/USERSCRIPT.js";document.getElementsByTagName("head")[0].appendChild(a)})();
+*/
