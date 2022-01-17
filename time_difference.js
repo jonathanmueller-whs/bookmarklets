@@ -12,18 +12,18 @@
 var getPingDate = prompt('\t\tEnter the Ping Date, i.e. the Kibana timestamp.\n\t\t\t\tThe format should look like this:\n\t\t\t   Month DDth YYYY, HH:MM:SS.mmm');
 var getSendDate = prompt('\t\tEnter the Send Date, i.e. the Splunk timestamp.\n\t\t\t\tThe format should look like this:\n\t\t\t\t\tYYYY-MM-DD HH:MM:SS');
 var month_map = {
-  1:"Jan",
-  2:"Feb",
-  3:"Mar",
-  4:"Apr",
-  5:"May",
-  6:"Jun",
-  7:"Jul",
-  8:"Aug",
-  9:"Sep",
-  10:"Oct",
-  11:"Nov",
-  12:"Dec"
+  "01":"Jan",
+  "02":"Feb",
+  "03":"Mar",
+  "04":"Apr",
+  "05":"May",
+  "06":"Jun",
+  "07":"Jul",
+  "08":"Aug",
+  "09":"Sep",
+  "10":"Oct",
+  "11":"Nov",
+  "12":"Dec"
 };
 var processedPingDate = processPingDate(getPingDate);
 var processedSendDate = processSendDate(getSendDate);
