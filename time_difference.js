@@ -76,7 +76,8 @@ function processPingDate(date_string) {
   var min=dateTime[5];
   var sec=dateTime[6];
   var offset = processOffset(new Date().getTimezoneOffset());
-  var processedDate = mon + " " + day + " " + year + " " + hour + ":" + min + ":" + sec + " GMT-" + offset;
+  var processedDate = mon + " " + day + " " + year + " " + hour + ":" + min + ":" + sec + " GMT" + offset;
+  console.log(processedDate);
   return processedDate;
 };
 
@@ -86,7 +87,7 @@ function processOffset(offset){
   if (MM == 0){
     MM = "00";
   };
-  var timezone = HH + MM;
+  var timezone = (HH * -1) + MM;
   return timezone;
 };
 
@@ -94,7 +95,7 @@ function processSendDate(date_string) {
   if (date_string === ''){
     return '';
   };
-  var findDate=/^\s*(\d{4})\-(\d{1,2})\-(\d{1,2})\s(\d+):(\d+):(\d+)/g;
+  var findDate=/^\s*(\d{4})\-(\d{1,2})\-(\d{1,2})\s(\d+):(\d+):(\d+)\s([A-Z]{3})/g;
   var dateTime=findDate.exec(date_string);
   var year=dateTime[1];
   var mon=month_map[dateTime[2]];
@@ -102,8 +103,18 @@ function processSendDate(date_string) {
   var hour=dateTime[4];
   var min=dateTime[5];
   var sec=dateTime[6];
-  var offset = processOffset(new Date().getTimezoneOffset());
-  var processedDate = mon + " " + day + " " + year + " " + hour + ":" + min + ":" + sec + " GMT-" + offset;
+  var TZ=dateTime[7]
+  var offset;
+  if(TZ==="PST"){
+    offset=-800;
+  }else if(TZ==="PDT"){
+    offset=-700;
+  }else{
+    offset=-800;
+    alert("\t\t\t\tWARNING!!!\nUnrecognized Splunk timezone. Defaulted to PST.\nThe time difference may be inaccurate because of this.\n\t\t\t\tTimezone Value: " + TZ);
+  };
+  var processedDate = mon + " " + day + " " + year + " " + hour + ":" + min + ":" + sec + " GMT" + offset;
+  console.log(processedDate);
   return processedDate;
 };
 
