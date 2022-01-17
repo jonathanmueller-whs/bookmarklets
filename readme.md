@@ -21,7 +21,8 @@ The first prompt will ask you to enter a time stamp from Kibana in the following
 The milliseconds aren't part of the calculation, but the regex does match on them, so if you omit them the script will break.
 
 The second prompt will ask you to enter a time stamp from Splunk in the following format:
-`YYYY-MM-DD HH:MM:SS`
+`YYYY-MM-DD HH:MM:SS TMZ`
+
 
 Steps:
 1. Click the bookmarklet.
@@ -32,8 +33,8 @@ Steps:
 ### Quirks
 
 - Leading spaces can break the script.
-- Pressing `Cancel` instead of `OK` in the prompts can cause the script to fail, or generate an error in the DOM (Particularly in Kibana pages.)
-- Splunk time stamps are only in PST. The script determines the timezone based on time offset used by the browser. This can cause the the results to vary if the time zones represented in Kibana and splunk are not consistent.
+- Pressing `Cancel` instead of `OK` in the prompts can cause the script to fail, or generate an error in the DOM (particularly in Kibana pages.)
+- Splunk time stamps are only in Pacific time. Be sure to include the timezone from the Splunk timestamp, PST or PDT (represented above as `TMZ`), otherwise the script may error out.
 
 
 
