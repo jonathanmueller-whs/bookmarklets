@@ -10,7 +10,7 @@
 // December 22nd 2021, 14:50:26.562
 // 2021-12-21 18:05:05
 var getPingDate = prompt('\t\tEnter the Ping Date, i.e. the Kibana timestamp.\n\t\t\t\tThe format should look like this:\n\t\t\t   Month DDth YYYY, HH:MM:SS.mmm');
-var getSendDate = prompt('\t\tEnter the Send Date, i.e. the Splunk timestamp.\n\t\t\t\tThe format should look like this:\n\t\t\t\t\tYYYY-MM-DD HH:MM:SS');
+var getSendDate = prompt('\t\tEnter the Send Date, i.e. the Splunk timestamp.\n\t\t\t\tThe format should look like this:\n\t\t\t\t\tYYYY-MM-DD HH:MM:SS TMZ');
 var month_map = {
   "01":"Jan",
   "02":"Feb",
