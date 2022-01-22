@@ -1,14 +1,11 @@
-// Some timestamps to test with.
-// Dec 26 2021 00:07:19 GMT-800
-// Dec 18 2021 12:05:17 GMT-800
-
 // Kibana date
 // December 22nd 2021, 14:50:26.562
+
 // Splunk date
 // 2021-12-21 18:05:05
 
-// December 22nd 2021, 14:50:26.562
-// 2021-12-21 18:05:05
+//
+
 var getPingDate = prompt('\t\tEnter the Ping Date, i.e. the Kibana timestamp.\n\t\t\t\tThe format should look like this:\n\t\t\t   Month DDth YYYY, HH:MM:SS.mmm');
 var getSendDate = prompt('\t\tEnter the Send Date, i.e. the Splunk timestamp.\n\t\t\t\tThe format should look like this:\n\t\t\t\t\tYYYY-MM-DD HH:MM:SS TMZ');
 var month_map = {
@@ -25,6 +22,12 @@ var month_map = {
   "11":"Nov",
   "12":"Dec"
 };
+var splunk_tz_map = {
+  "PST":"-800",
+  "PDT":"-700",
+  "GMT":"-000",
+  "UCT":"-000"
+}
 var processedPingDate = processPingDate(getPingDate);
 var processedSendDate = processSendDate(getSendDate);
 var pingdate = newDate(processedPingDate);
@@ -105,14 +108,13 @@ function processSendDate(date_string) {
   var sec=dateTime[6];
   var TZ=dateTime[7]
   var offset;
-  if(TZ==="PST"){
-    offset=-800;
-  }else if(TZ==="PDT"){
-    offset=-700;
+  if (TZ in splunk_tz_map) {
+    offset = splunk_tz_map[TZ];
   }else{
-    offset=-800;
+    offset=-800
     alert("\t\t\t\tWARNING!!!\nUnrecognized Splunk timezone. Defaulted to PST.\nThe time difference may be inaccurate because of this.\n\t\t\t\tTimezone Value: " + TZ);
-  };
+  }
+
   var processedDate = mon + " " + day + " " + year + " " + hour + ":" + min + ":" + sec + " GMT" + offset;
   console.log(processedDate);
   return processedDate;
