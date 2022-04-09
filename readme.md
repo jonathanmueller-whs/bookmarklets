@@ -10,8 +10,8 @@ If I need to make updates to them to add features or fix bugs, the bookmarklets 
 Each script has it's own readme.md file to help you get started and list out any quirks you might experience. (Yes, sometimes my code is buggy. :P)
 
 ## List of Bookmarklets:
-- [Time Differ](/time-differ/)
-- [Scan Response Getter](/scan-response-getter/)
+- [Time Differ](/bookmarklets/time-differ/)
+- [Scan Response Getter](/bookmarklets/scan-response-getter/)
 
 
 
