@@ -40,5 +40,5 @@ Steps:
 
 ## Bookmarklet
 ```
-javascript:(function(){var a = document.createElement("script");a.src = "https://jonathanmueller-whs.github.io/time-differ/time_difference.js";document.getElementsByTagName("head")[0].appendChild(a)})();
+javascript:(function(){var a = document.createElement("script");a.src = "https://jonathanmueller-whs.github.io/bookmarklets/time-differ/time_difference.js";document.getElementsByTagName("head")[0].appendChild(a)})();
 ```
