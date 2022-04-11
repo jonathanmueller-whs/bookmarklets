@@ -1,4 +1,4 @@
-# Scan Resposne Getter
+# Scan Response Getter
 
 A little script to make navigating to scan_response.html pages from Splunk a little easier.
 
@@ -23,5 +23,5 @@ You will need add an exception in your pop-up blocker settings in Firefox if wan
 
 ## Bookmarklet
 ```
-javascript:(function(){var a = document.createElement("script");a.src = "https://jonathanmueller-whs.github.io/scan-response-getter/scan-response-getter.js";document.getElementsByTagName("head")[0].appendChild(a)})();
+javascript:(function(){var a = document.createElement("script");a.src = "https://jonathanmueller-whs.github.io/bookmarklets/scan-response-getter/scan-response-getter.js";document.getElementsByTagName("head")[0].appendChild(a)})();
 ```
