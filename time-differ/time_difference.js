@@ -26,7 +26,7 @@ var splunk_tz_map = {
   "PST":"-800",
   "PDT":"-700",
   "GMT":"-000",
-  "UCT":"-000"
+  "UTC":"-000"
 }
 var processedPingDate = processPingDate(getPingDate);
 var processedSendDate = processSendDate(getSendDate);
